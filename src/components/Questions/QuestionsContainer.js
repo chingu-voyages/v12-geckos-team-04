@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header'
 import Form from './Form'
 import QuestionList from './QuestionList';
+import './Questions.css'
 
 class QuestionsContainer extends React.Component {
 
@@ -17,10 +18,11 @@ class QuestionsContainer extends React.Component {
     }
 
     deleteQuestion = (indexOfQuestion) => {
+        debugger
         const newQuestionList = [...this.state.questions]
         newQuestionList.splice(indexOfQuestion, 1)
         this.setState(() => ({questions: newQuestionList}))
-        this.updateLocalStorage()
+        this.updateLocalStorage(newQuestionList)
     }
 
     addQuestion = (e) => {
@@ -34,24 +36,23 @@ class QuestionsContainer extends React.Component {
         e.target.elements.input.value = ''
         const newQuestionList = [...this.state.questions, textInput]
         this.setState(() => ({questions: newQuestionList}))
-        this.updateLocalStorage()
+        this.updateLocalStorage(newQuestionList)
     }
 
-    updateLocalStorage = () => {
+    updateLocalStorage = (newQuestionList) => {
         if (localStorage.getItem('questions')) {
             localStorage.removeItem('questions')
         }
-        const currentQuestions = [...this.state.questions]
-        localStorage.setItem('questions', JSON.stringify(currentQuestions))
+        localStorage.setItem('questions', JSON.stringify(newQuestionList))
     }
 
     render() {
 
         return (
-            <div>
+            <div className="questions-container">
                 <Header />
-                <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} />
                 <Form addQuestion={this.addQuestion} updateList={this.updateList} />
+                <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} />
             </div>
         );
     }

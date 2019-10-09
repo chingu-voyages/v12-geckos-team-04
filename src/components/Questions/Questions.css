@@ -1,0 +1,9 @@
+.questions-container {
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.questions-title {
+    text-align: center;
+    font-size: 2.5rem;
+}
