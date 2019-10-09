@@ -11,16 +11,20 @@ class QuestionsContainer extends React.Component {
 
     componentDidMount() {
         if (localStorage.getItem('questions') && localStorage.getItem('questions').length > 0) {
-            this.updateList()
+            const savedQuestions = JSON.parse(localStorage.getItem('questions'))
+            this.setState(() => ({questions: savedQuestions}))
         }
     }
 
-    deleteItem = (indexOfItem) => {
-        this.setState((prevState) => ({questions: prevState.questions.splice(indexOfItem, 1)}))
+    deleteQuestion = (indexOfQuestion) => {
+        const newQuestionList = [...this.state.questions]
+        newQuestionList.splice(indexOfQuestion, 1)
+        this.setState(() => ({questions: newQuestionList}))
         this.updateLocalStorage()
     }
 
-    handleAdd = (e) => {
+    addQuestion = (e) => {
+        debugger
         e.preventDefault()
         const textInput = e.target.elements.input.value.trim()
         if (textInput === '') {
@@ -28,8 +32,8 @@ class QuestionsContainer extends React.Component {
             return
         }
         e.target.elements.input.value = ''
-        const currentQuestions = [...this.state.questions]
-        this.setState(() => ({questions: currentQuestions.push(textInput)}))
+        const newQuestionList = [...this.state.questions, textInput]
+        this.setState(() => ({questions: newQuestionList}))
         this.updateLocalStorage()
     }
 
@@ -39,12 +43,6 @@ class QuestionsContainer extends React.Component {
         }
         const currentQuestions = [...this.state.questions]
         localStorage.setItem('questions', JSON.stringify(currentQuestions))
-        this.updateList()
-    }
-
-    updateList = () => {
-        const savedArray = JSON.parse(localStorage.getItem('questions'))
-        this.setState(() => ({questions: savedArray}))
     }
 
     render() {
@@ -52,8 +50,8 @@ class QuestionsContainer extends React.Component {
         return (
             <div>
                 <Header />
-                <QuestionList questions={this.state.questions} deleteItem={this.deleteItem} />
-                <Form handleAdd={this.handleAdd} updateList={this.updateList} />
+                <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} />
+                <Form addQuestion={this.addQuestion} updateList={this.updateList} />
             </div>
         );
     }

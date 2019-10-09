@@ -5,7 +5,7 @@ const Form = (props) => {
     return (
 
         <div className="questions-wrapper">
-            <form action="submit" onSubmit={props.handleAdd}>
+            <form action="submit" onSubmit={props.addQuestion}>
                 <input type="text" className="question-input" name="input" onChange={props.handleInput} />
                 <button>Add new question</button>
             </form>

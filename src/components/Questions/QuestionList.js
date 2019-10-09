@@ -1,10 +1,10 @@
 import React from 'react'
-import ListItem from './ListItem'
+import Question from './Question'
 
 const QuestionList = (props) => {
     return (
         <ul>
-            {props.questions.map((question, index) => <ListItem question={question} id={index} key={index} deleteItem={props.deleteItem} />)}
+            {props.questions.map((question, index) => <Question question={question} id={index} key={index} deleteQuestion={props.deleteQuestion} />)}
         </ul>
     )
 }
