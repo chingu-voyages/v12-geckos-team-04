@@ -51,7 +51,7 @@
     padding: 0.2rem;
 }
 
-.delete-button {
+.delete-question-button {
     cursor: pointer;
     font-size: 2rem;
     padding: 0 0.7rem;
@@ -60,10 +60,44 @@
     vertical-align: top;
 }
 
-.delete-button:hover {
+.delete-question-button:hover {
     color: red;
 }
 
 .show {
     display: inline-block;
 }
+
+.modal-wrapper {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    width: 40%;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.close-modal-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.5rem;
+    top: 0.2rem;
+    right: 0.7rem;
+    cursor: pointer;
+}
+

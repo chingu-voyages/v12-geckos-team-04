@@ -2,12 +2,14 @@ import React from 'react';
 import Header from './Header'
 import Form from './Form'
 import QuestionList from './QuestionList';
+import InfoModal from './InfoModal'
 import './Questions.css'
 
 class QuestionsContainer extends React.Component {
 
     state = {
-        questions: []
+        questions: [],
+        showModal: false
     }
 
     componentDidMount() {
@@ -46,6 +48,14 @@ class QuestionsContainer extends React.Component {
         localStorage.setItem('questions', JSON.stringify(newQuestionList))
     }
 
+    closeModal = () => {
+        this.setState(() => ({showModal: false}))
+    }
+
+    showModal = () => {
+        this.setState(() => ({showModal: true}))
+    }
+
     render() {
 
         return (
@@ -53,7 +63,8 @@ class QuestionsContainer extends React.Component {
                 <div className="questions-content">
                     <Header />
                     <Form addQuestion={this.addQuestion} updateList={this.updateList} />
-                    <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} />
+                    <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showModal={this.showModal} />
+                    {this.state.showModal && <InfoModal closeModal={this.closeModal} />}
                 </div>
             </div>
         );
