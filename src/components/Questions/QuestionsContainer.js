@@ -50,9 +50,11 @@ class QuestionsContainer extends React.Component {
 
         return (
             <div className="questions-container">
-                <Header />
-                <Form addQuestion={this.addQuestion} updateList={this.updateList} />
-                <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} />
+                <div className="questions-content">
+                    <Header />
+                    <Form addQuestion={this.addQuestion} updateList={this.updateList} />
+                    <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} />
+                </div>
             </div>
         );
     }

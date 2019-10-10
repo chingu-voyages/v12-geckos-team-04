@@ -4,7 +4,7 @@ import './Questions.css'
 const Header = () => {
     return (
         <div>
-            <h2 className="questions-title">My Questions:</h2>
+            <h1 className="questions-title">My Questions:</h1>
         </div>
     )
 }

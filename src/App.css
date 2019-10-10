@@ -6,4 +6,6 @@
 
 .app-title {
     text-align: center;
+    margin-top: 1rem;
+    font-size: 3rem;
 }

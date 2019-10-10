@@ -1,9 +1,80 @@
 .questions-container {
-    border: 2px solid black;
+    background: rgb(193, 193, 204);
     padding: 20px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    top: 7rem;
+}
+
+.questions-content {
+    background: white;
+    border-radius: 8px;
+    width: 70%;
+    margin: 0 auto;
 }
 
 .questions-title {
     text-align: center;
-    font-size: 2.5rem;
+    padding: 2rem;
+}
+
+.list-item {
+    list-style: none;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.list-item:hover {
+    background: #eee;
+}
+
+.question-text {
+    font-size: 2rem;
+}
+
+.form-wrapper {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.question-input {
+    font-size: inherit;
+    padding: 0.2rem;
+    width: 50%;
+}
+
+.add-button {
+    font-size: inherit;
+    padding: 0.2rem;
+}
+
+.delete-button {
+    cursor: pointer;
+    font-size: 2rem;
+    padding: 0 0.7rem;
+    position: absolute;
+    right: 3rem;
+    vertical-align: top;
+
+}
+
+.delete-button:hover {
+    color: red;
+}
+
+.extra-info {
+    background: lightblue;
+    list-style: none;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+    font-size: 2rem;
+    display: none;
+    width: 100%;
+}
+
+.show {
+    display: inline-block;
 }
