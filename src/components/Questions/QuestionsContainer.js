@@ -20,7 +20,6 @@ class QuestionsContainer extends React.Component {
     }
 
     deleteQuestion = (indexOfQuestion) => {
-        debugger
         const newQuestionList = [...this.state.questions]
         newQuestionList.splice(indexOfQuestion, 1)
         this.setState(() => ({questions: newQuestionList}))
@@ -28,7 +27,6 @@ class QuestionsContainer extends React.Component {
     }
 
     addQuestion = (e) => {
-        debugger
         e.preventDefault()
         const textInput = e.target.elements.input.value.trim()
         if (textInput === '') {
@@ -48,13 +46,20 @@ class QuestionsContainer extends React.Component {
         localStorage.setItem('questions', JSON.stringify(newQuestionList))
     }
 
-    closeModal = () => {
-        this.setState(() => ({showModal: false}))
+    closeModal = (e) => {
+        e.persist()
+        if (e.target.className === 'modal-wrapper' || e.target.className === 'close-modal-button') {
+            this.setState(() => ({showModal: false}))
+        }
     }
 
-    showModal = () => {
-        this.setState(() => ({showModal: true}))
+    showModal = (e) => {
+        e.persist();
+        if (e.target.className !== 'delete-question-button') {
+            this.setState(() => ({showModal: true}))
+        }
     }
+
 
     render() {
 

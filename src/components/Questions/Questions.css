@@ -24,6 +24,7 @@
     padding: 20px;
     position: relative;
     cursor: pointer;
+    border-radius: 8px;
 }
 
 .list-item:hover {
@@ -80,6 +81,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: fade-in 500ms ease-out;
+}
+
+@keyframes fade-in {
+    0% {opacity: 0}
+    100% {opacity: 1}
 }
 
 .modal-content {
@@ -100,4 +107,3 @@
     right: 0.7rem;
     cursor: pointer;
 }
-
