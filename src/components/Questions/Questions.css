@@ -37,6 +37,7 @@
 .form-wrapper {
     font-size: 1.5rem;
     text-align: center;
+    padding: 1rem;
 }
 
 .question-input {
@@ -57,22 +58,10 @@
     position: absolute;
     right: 3rem;
     vertical-align: top;
-
 }
 
 .delete-button:hover {
     color: red;
-}
-
-.extra-info {
-    background: lightblue;
-    list-style: none;
-    padding: 20px;
-    position: relative;
-    cursor: pointer;
-    font-size: 2rem;
-    display: none;
-    width: 100%;
 }
 
 .show {

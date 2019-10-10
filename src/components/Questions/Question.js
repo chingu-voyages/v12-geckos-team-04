@@ -14,7 +14,7 @@ class Question extends React.Component {
 
         return (
             <div>
-                <li className="list-item" onClick={this.showExtraInfo}><span className="question-text">{this.props.question}</span><span className="delete-button" onClick={() => {this.props.deleteQuestion(this.props.id)}}>&#10006;</span></li> <li className={"extra-info" + (this.state.showExtraInfo ? ' show' : '')}>This is some extra info</li>
+                <li className="list-item" onClick={this.showExtraInfo}><span className="question-text">{this.props.question}</span><span className="delete-button" onClick={() => {this.props.deleteQuestion(this.props.id)}}>&#10006;</span></li>
             </div>
         )
 
