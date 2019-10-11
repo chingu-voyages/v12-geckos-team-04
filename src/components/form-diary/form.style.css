@@ -1,0 +1,23 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 10px auto;
+}
+
+form input[type="text"] {
+  height: 30px;
+}
+
+form h1,
+input,
+textarea {
+  margin: 10px;
+  resize: none;
+}
+
+input[type="submit"] {
+  width: 100px;
+  padding: 10px;
+  margin: 0 auto;
+}
