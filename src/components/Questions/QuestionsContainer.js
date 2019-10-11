@@ -13,7 +13,8 @@ class QuestionsContainer extends React.Component {
         showForm: false,
         showModal: false,
         selectedQuestion: '',
-        selectedDate: ''
+        selectedDate: '',
+        selectedTag: ''
     }
 
     componentDidMount() {
@@ -32,7 +33,8 @@ class QuestionsContainer extends React.Component {
 
     addQuestion = (e) => {
         e.preventDefault()
-        const textInput = e.target.elements.input.value.trim()
+        const textInput = e.target.elements.questioninput.value.trim()
+        const tagInput = e.target.elements.taginput.value.trim()
         if (textInput === '') {
             alert('Please write something')
             return
@@ -50,11 +52,12 @@ class QuestionsContainer extends React.Component {
         let formattedDate = dd + '/' + mm + '/' + yy
         let newQuestionObj = {
             question: textInput,
+            tag: tagInput,
             date: formattedDate
         }
         const newQuestionList = [...this.state.questions, newQuestionObj]
         this.setState(() => ({questions: newQuestionList}))
-        e.target.elements.input.value = ''
+        e.target.elements.questioninput.value = ''
         this.setState(() => ({showForm: false}))
         this.updateLocalStorage(newQuestionList)
     }
@@ -73,10 +76,10 @@ class QuestionsContainer extends React.Component {
         }
     }
 
-    showModal = (e, question, date) => {
+    showModal = (e, question, date, tag) => {
         e.persist();
         if (e.target.className !== 'delete-question-button') {
-            this.setState(() => ({showModal: true, selectedQuestion: question, selectedDate: date}))
+            this.setState(() => ({showModal: true, selectedQuestion: question, selectedDate: date, selectedTag: tag}))
         }
     }
 
@@ -91,6 +94,7 @@ class QuestionsContainer extends React.Component {
     }
 
 
+
     render() {
 
         return (
@@ -100,7 +104,7 @@ class QuestionsContainer extends React.Component {
                     <NewQuestionButton openForm={this.openForm} />
                     {this.state.showForm && <Form addQuestion={this.addQuestion} updateList={this.updateList} closeForm={this.closeForm} />}
                     <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showModal={this.showModal} />
-                    {this.state.showModal && <InfoModal closeModal={this.closeModal} question={this.state.selectedQuestion} date={this.state.selectedDate} />}
+                    {this.state.showModal && <InfoModal closeModal={this.closeModal} question={this.state.selectedQuestion} date={this.state.selectedDate} tag={this.state.selectedTag} />}
                 </div>
             </div>
         );

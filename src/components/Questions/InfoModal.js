@@ -11,6 +11,7 @@ const InfoModal = (props) => {
                     <li className="modal-info-data">{props.question}</li>
                     <li className="modal-info-label">Added</li>
                     <li className="modal-info-data">{props.date}</li>
+                    {props.tag && <React.Fragment><li className="modal-info-label">Tag</li> <li className="modal-info-data">{props.tag}</li></React.Fragment>}
                 </ul>
             </div>
         </div>
