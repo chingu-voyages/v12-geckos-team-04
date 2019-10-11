@@ -35,22 +35,7 @@
     font-size: 2rem;
 }
 
-.form-wrapper {
-    font-size: 1.5rem;
-    text-align: center;
-    padding: 1rem;
-}
 
-.question-input {
-    font-size: inherit;
-    padding: 0.2rem;
-    width: 50%;
-}
-
-.add-button {
-    font-size: inherit;
-    padding: 0.2rem;
-}
 
 .delete-question-button {
     cursor: pointer;
@@ -109,10 +94,78 @@
     cursor: pointer;
 }
 
+.close-modal-button:hover {
+    color: red;
+}
+
 .modal-info-list {
     list-style: none;
 }
 
 .modal-info-label {
     font-weight: bold;
+}
+
+.new-question-button-wrapper {
+    text-align: center;
+    padding: 1rem;
+}
+
+.new-question-button {
+    font-size: 1.5rem;
+    padding: 0.3rem;
+}
+
+
+
+
+
+
+.form-wrapper {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fade-in 500ms ease-out;
+}
+
+@keyframes fade-in {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+.form-wrapper {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.form-content {
+    background: white;
+    width: 45%;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.question-input {
+    font-size: inherit;
+    padding: 0.2rem;
+    width: 85%;
+}
+
+.add-button {
+    font-size: inherit;
+    padding: 0.3rem 0.7rem;
 }

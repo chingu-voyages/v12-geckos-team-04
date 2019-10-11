@@ -3,12 +3,14 @@ import Header from './Header'
 import Form from './Form'
 import QuestionList from './QuestionList';
 import InfoModal from './InfoModal'
+import NewQuestionButton from './NewQuestionButton'
 import './Questions.css'
 
 class QuestionsContainer extends React.Component {
 
     state = {
         questions: [],
+        showForm: false,
         showModal: false,
         selectedQuestion: '',
         selectedDate: ''
@@ -53,6 +55,7 @@ class QuestionsContainer extends React.Component {
         const newQuestionList = [...this.state.questions, newQuestionObj]
         this.setState(() => ({questions: newQuestionList}))
         e.target.elements.input.value = ''
+        this.setState(() => ({showForm: false}))
         this.updateLocalStorage(newQuestionList)
     }
 
@@ -77,6 +80,16 @@ class QuestionsContainer extends React.Component {
         }
     }
 
+    openForm = () => {
+        this.setState(() => ({showForm: true}))
+    }
+
+    closeForm = (e) => {
+        if (e.target.className === 'form-wrapper') {
+            this.setState(() => ({showForm: false}))
+        }
+    }
+
 
     render() {
 
@@ -84,7 +97,8 @@ class QuestionsContainer extends React.Component {
             <div className="questions-container">
                 <div className="questions-content">
                     <Header />
-                    <Form addQuestion={this.addQuestion} updateList={this.updateList} />
+                    <NewQuestionButton openForm={this.openForm} />
+                    {this.state.showForm && <Form addQuestion={this.addQuestion} updateList={this.updateList} closeForm={this.closeForm} />}
                     <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showModal={this.showModal} />
                     {this.state.showModal && <InfoModal closeModal={this.closeModal} question={this.state.selectedQuestion} date={this.state.selectedDate} />}
                 </div>
