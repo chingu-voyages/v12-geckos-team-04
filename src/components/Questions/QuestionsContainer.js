@@ -9,7 +9,9 @@ class QuestionsContainer extends React.Component {
 
     state = {
         questions: [],
-        showModal: false
+        showModal: false,
+        selectedQuestion: '',
+        selectedDate: ''
     }
 
     componentDidMount() {
@@ -33,9 +35,24 @@ class QuestionsContainer extends React.Component {
             alert('Please write something')
             return
         }
-        e.target.elements.input.value = ''
-        const newQuestionList = [...this.state.questions, textInput]
+        let today = new Date()
+        let dd = today.getDate()
+        let mm = today.getMonth() + 1
+        let yy = today.getFullYear().toString().substr(-2)
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+        let formattedDate = dd + '/' + mm + '/' + yy
+        let newQuestionObj = {
+            question: textInput,
+            date: formattedDate
+        }
+        const newQuestionList = [...this.state.questions, newQuestionObj]
         this.setState(() => ({questions: newQuestionList}))
+        e.target.elements.input.value = ''
         this.updateLocalStorage(newQuestionList)
     }
 
@@ -53,10 +70,10 @@ class QuestionsContainer extends React.Component {
         }
     }
 
-    showModal = (e) => {
+    showModal = (e, question, date) => {
         e.persist();
         if (e.target.className !== 'delete-question-button') {
-            this.setState(() => ({showModal: true}))
+            this.setState(() => ({showModal: true, selectedQuestion: question, selectedDate: date}))
         }
     }
 
@@ -69,7 +86,7 @@ class QuestionsContainer extends React.Component {
                     <Header />
                     <Form addQuestion={this.addQuestion} updateList={this.updateList} />
                     <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showModal={this.showModal} />
-                    {this.state.showModal && <InfoModal closeModal={this.closeModal} />}
+                    {this.state.showModal && <InfoModal closeModal={this.closeModal} question={this.state.selectedQuestion} date={this.state.selectedDate} />}
                 </div>
             </div>
         );

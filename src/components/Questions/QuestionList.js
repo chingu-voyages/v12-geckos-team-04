@@ -4,7 +4,7 @@ import Question from './Question'
 const QuestionList = (props) => {
     return (
         <ul>
-            {props.questions.map((question, index) => <Question question={question} id={index} key={index} deleteQuestion={props.deleteQuestion} showModal={props.showModal} />)}
+            {props.questions.map((question, index) => <Question question={question.question} date={question.date} id={index} key={index} deleteQuestion={props.deleteQuestion} showModal={props.showModal} />)}
         </ul>
     )
 }

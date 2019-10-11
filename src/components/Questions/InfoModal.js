@@ -6,8 +6,12 @@ const InfoModal = (props) => {
         <div className="modal-wrapper" onClick={props.closeModal}>
             <div className="modal-content">
                 <div className="close-modal-button">&#10006;</div>
-                <h2 className="modal-title">This is a title.</h2>
-                <p className="modal-info">This is some info.</p>
+                <ul className="modal-info-list">
+                    <li className="modal-info-label">Question</li>
+                    <li className="modal-info-data">{props.question}</li>
+                    <li className="modal-info-label">Added</li>
+                    <li className="modal-info-data">{props.date}</li>
+                </ul>
             </div>
         </div>
     )

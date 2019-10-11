@@ -96,6 +96,7 @@
     padding: 1rem;
     text-align: center;
     position: relative;
+    font-size: 1.5rem;
 }
 
 .close-modal-button {
@@ -106,4 +107,12 @@
     top: 0.2rem;
     right: 0.7rem;
     cursor: pointer;
+}
+
+.modal-info-list {
+    list-style: none;
+}
+
+.modal-info-label {
+    font-weight: bold;
 }

@@ -10,7 +10,7 @@ class Question extends React.Component {
 
         return (
             <div>
-                <li className="list-item" onClick={this.props.showModal}><span className="question-text">{this.props.question}</span><span className="delete-question-button" onClick={() => {this.props.deleteQuestion(this.props.id)}}>&#10006;</span></li>
+                <li className="list-item" onClick={(e) => this.props.showModal(e, this.props.question, this.props.date)}><span className="question-text">{this.props.question}</span><span className="delete-question-button" onClick={() => {this.props.deleteQuestion(this.props.id)}}>&#10006;</span></li>
             </div>
         )
 
