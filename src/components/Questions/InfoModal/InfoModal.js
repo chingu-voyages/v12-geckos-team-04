@@ -1,5 +1,5 @@
 import React from 'react'
-import './Questions.css'
+import './InfoModal.css'
 
 const InfoModal = (props) => {
     return (

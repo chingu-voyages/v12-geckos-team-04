@@ -1,5 +1,5 @@
 import React from 'react'
-import './Questions.css'
+import './Header.css'
 
 const Header = () => {
     return (

@@ -1,0 +1,29 @@
+
+.list-item {
+    list-style: none;
+    padding: 20px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.list-item:hover {
+    background: #eee;
+}
+
+.question-text {
+    font-size: 2rem;
+}
+
+.delete-question-button {
+    cursor: pointer;
+    font-size: 2rem;
+    padding: 0 0.7rem;
+    position: absolute;
+    right: 3rem;
+    vertical-align: top;
+}
+
+.delete-question-button:hover {
+    color: red;
+}

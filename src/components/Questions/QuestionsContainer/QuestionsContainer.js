@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header'
-import Form from './Form'
-import QuestionList from './QuestionList';
-import InfoModal from './InfoModal'
-import NewQuestionButton from './NewQuestionButton'
-import './Questions.css'
+import Header from '../Header/Header'
+import Form from '../Form/Form'
+import QuestionList from '../QuestionList/QuestionList';
+import InfoModal from '../InfoModal/InfoModal'
+import NewQuestionButton from '../NewQuestionButton/NewQuestionButton'
+import './QuestionsContainer.css'
 
 class QuestionsContainer extends React.Component {
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import './NewQuestionButton.css'
 
 const NewQuestionButton = (props) => {
     return (

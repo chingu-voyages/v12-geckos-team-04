@@ -1,5 +1,5 @@
 import React from 'react'
-import './Questions.css'
+import './Form.css'
 
 class Form extends React.Component {
 
