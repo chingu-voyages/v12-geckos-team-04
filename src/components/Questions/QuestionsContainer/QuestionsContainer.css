@@ -1,15 +1,15 @@
 .questions-container {
     background: rgb(193, 193, 204);
+    bottom: 0;
     padding: 20px;
     position: absolute;
-    width: 100%;
-    bottom: 0;
     top: 7rem;
+    width: 100%;
 }
 
 .questions-content {
     background: white;
     border-radius: 8px;
-    width: 70%;
     margin: 0 auto;
+    width: 70%;
 }

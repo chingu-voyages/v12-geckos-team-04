@@ -1,12 +1,9 @@
 .new-question-button-wrapper {
-    text-align: center;
     padding: 1rem;
+    text-align: center;
 }
 
 .new-question-button {
     font-size: 1.5rem;
     padding: 0.3rem;
 }
-
-
-

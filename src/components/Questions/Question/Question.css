@@ -1,10 +1,10 @@
 
 .list-item {
+    border-radius: 8px;
+    cursor: pointer;
     list-style: none;
     padding: 20px;
     position: relative;
-    cursor: pointer;
-    border-radius: 8px;
 }
 
 .list-item:hover {

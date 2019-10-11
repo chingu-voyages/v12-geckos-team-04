@@ -8,7 +8,7 @@ const InfoModal = (props) => {
                 <div className="close-modal-button" title="Close">&#10006;</div>
                 <ul className="modal-info-list">
                     <li className="modal-info-label">Question</li>
-                    <li className="modal-info-data">{props.question}</li>
+                    <li className="modal-info-data">{props.text}</li>
                     <li className="modal-info-label">Added</li>
                     <li className="modal-info-data">{props.date}</li>
                     {props.tag && <React.Fragment><li className="modal-info-label">Tag</li> <li className="modal-info-data">{props.tag}</li></React.Fragment>}

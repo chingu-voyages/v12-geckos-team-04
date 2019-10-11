@@ -12,23 +12,9 @@ class QuestionsContainer extends React.Component {
         questions: [],
         showForm: false,
         showModal: false,
-        selectedQuestion: '',
-        selectedDate: '',
-        selectedTag: ''
-    }
-
-    componentDidMount() {
-        if (localStorage.getItem('questions') && localStorage.getItem('questions').length > 0) {
-            const savedQuestions = JSON.parse(localStorage.getItem('questions'))
-            this.setState(() => ({questions: savedQuestions}))
-        }
-    }
-
-    deleteQuestion = (indexOfQuestion) => {
-        const newQuestionList = [...this.state.questions]
-        newQuestionList.splice(indexOfQuestion, 1)
-        this.setState(() => ({questions: newQuestionList}))
-        this.updateLocalStorage(newQuestionList)
+        requestedText: '',
+        requestedDate: '',
+        requestedTag: ''
     }
 
     addQuestion = (e) => {
@@ -51,7 +37,7 @@ class QuestionsContainer extends React.Component {
         }
         let formattedDate = dd + '/' + mm + '/' + yy
         let newQuestionObj = {
-            question: textInput,
+            text: textInput,
             tag: tagInput,
             date: formattedDate
         }
@@ -62,11 +48,10 @@ class QuestionsContainer extends React.Component {
         this.updateLocalStorage(newQuestionList)
     }
 
-    updateLocalStorage = (newQuestionList) => {
-        if (localStorage.getItem('questions')) {
-            localStorage.removeItem('questions')
+    closeForm = (e) => {
+        if (e.target.className === 'form-wrapper') {
+            this.setState(() => ({showForm: false}))
         }
-        localStorage.setItem('questions', JSON.stringify(newQuestionList))
     }
 
     closeModal = (e) => {
@@ -76,24 +61,37 @@ class QuestionsContainer extends React.Component {
         }
     }
 
-    showModal = (e, question, date, tag) => {
-        e.persist();
-        if (e.target.className !== 'delete-question-button') {
-            this.setState(() => ({showModal: true, selectedQuestion: question, selectedDate: date, selectedTag: tag}))
+    componentDidMount() {
+        if (localStorage.getItem('questions') && localStorage.getItem('questions').length > 0) {
+            const savedQuestions = JSON.parse(localStorage.getItem('questions'))
+            this.setState(() => ({questions: savedQuestions}))
         }
+    }
+
+    deleteQuestion = (indexOfQuestion) => {
+        const newQuestionList = [...this.state.questions]
+        newQuestionList.splice(indexOfQuestion, 1)
+        this.setState(() => ({questions: newQuestionList}))
+        this.updateLocalStorage(newQuestionList)
     }
 
     openForm = () => {
         this.setState(() => ({showForm: true}))
     }
 
-    closeForm = (e) => {
-        if (e.target.className === 'form-wrapper') {
-            this.setState(() => ({showForm: false}))
+    updateLocalStorage = (newQuestionList) => {
+        if (localStorage.getItem('questions')) {
+            localStorage.removeItem('questions')
         }
+        localStorage.setItem('questions', JSON.stringify(newQuestionList))
     }
 
-
+    showModal = (e, text, date, tag) => {
+        e.persist();
+        if (e.target.className !== 'delete-question-button') {
+            this.setState(() => ({showModal: true, requestedText: text, requestedDate: date, requestedTag: tag}))
+        }
+    }
 
     render() {
 
@@ -104,7 +102,7 @@ class QuestionsContainer extends React.Component {
                     <NewQuestionButton openForm={this.openForm} />
                     {this.state.showForm && <Form addQuestion={this.addQuestion} updateList={this.updateList} closeForm={this.closeForm} />}
                     <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showModal={this.showModal} />
-                    {this.state.showModal && <InfoModal closeModal={this.closeModal} question={this.state.selectedQuestion} date={this.state.selectedDate} tag={this.state.selectedTag} />}
+                    {this.state.showModal && <InfoModal closeModal={this.closeModal} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
                 </div>
             </div>
         );
