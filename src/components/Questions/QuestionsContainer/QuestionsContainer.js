@@ -3,6 +3,7 @@ import Header from '../Header/Header'
 import Form from '../Form/Form'
 import QuestionList from '../QuestionList/QuestionList';
 import InfoModal from '../InfoModal/InfoModal'
+import AnswerModal from '../AnswerModal/AnswerModal'
 import NewQuestionButton from '../NewQuestionButton/NewQuestionButton'
 import './QuestionsContainer.css'
 
@@ -11,7 +12,7 @@ class QuestionsContainer extends React.Component {
     state = {
         questions: [],
         showForm: false,
-        showModal: false,
+        showInfoModal: false,
         requestedText: '',
         requestedDate: '',
         requestedTag: '',
@@ -55,10 +56,17 @@ class QuestionsContainer extends React.Component {
         }
     }
 
-    closeModal = (e) => {
+    closeAnswerModal = (e) => {
+        e.persist()
+        if (e.target.className === 'modal-wrapper' || e.target.className === 'close-modal-button') {
+            this.setState(() => ({showAnswerModal: false}))
+        }
+    }
+
+    closeInfoModal = (e) => {
         e.persist()
         if (e.target.className === 'modal-wrapper' || e.target.className === 'close-modal-button' || e.target.className === 'delete-button') {
-            this.setState(() => ({showModal: false}))
+            this.setState(() => ({showInfoModal: false}))
         }
     }
 
@@ -87,10 +95,14 @@ class QuestionsContainer extends React.Component {
         localStorage.setItem('questions', JSON.stringify(newQuestionList))
     }
 
-    showModal = (e, text, date, tag, id) => {
+    showAnswerModal = () => {
+        this.setState(() => ({showInfoModal: false, showAnswerModal: true}))
+    }
+
+    showInfoModal = (e, text, date, tag, id) => {
         e.persist();
         if (e.target.className !== 'delete-question-button') {
-            this.setState(() => ({showModal: true, requestedText: text, requestedDate: date, requestedTag: tag, requestedId: id}))
+            this.setState(() => ({showInfoModal: true, requestedText: text, requestedDate: date, requestedTag: tag, requestedId: id}))
         }
     }
 
@@ -102,8 +114,9 @@ class QuestionsContainer extends React.Component {
                     <Header />
                     <NewQuestionButton openForm={this.openForm} />
                     {this.state.showForm && <Form addQuestion={this.addQuestion} updateList={this.updateList} closeForm={this.closeForm} />}
-                    <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showModal={this.showModal} />
-                    {this.state.showModal && <InfoModal closeModal={this.closeModal} deleteQuestion={this.deleteQuestion} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
+                    <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} />
+                    {this.state.showInfoModal && <InfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
+                    {this.state.showAnswerModal && <AnswerModal id={this.state.requestedId} text={this.state.requestedText} closeAnswerModal={this.closeAnswerModal} />}
                 </div>
             </div>
         );
