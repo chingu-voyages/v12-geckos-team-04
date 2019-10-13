@@ -13,9 +13,12 @@ const InfoModal = (props) => {
                     <li className="modal-info-data">{props.date}</li>
                     {props.tag && <React.Fragment><li className="modal-info-label">Tag</li> <li className="modal-info-data">{props.tag}</li></React.Fragment>}
                 </ul>
+                <button className="delete-button" title="Delete" onClick={() => {props.deleteQuestion(props.id)}}>Delete</button>
             </div>
         </div>
     )
 }
 
 export default InfoModal
+
+

@@ -11,7 +11,7 @@ class Question extends React.Component {
 
         return (
             <div>
-                <li className="list-item" onClick={(e) => this.props.showModal(e, this.props.text, this.props.date, this.props.tag)}><span className="question-text">{this.props.text}</span><span className="delete-question-button" title="Delete" onClick={() => {this.props.deleteQuestion(this.props.id)}}>&#10006;</span></li>
+                <li className="list-item" onClick={(e) => this.props.showModal(e, this.props.text, this.props.date, this.props.tag, this.props.id)}><span className="question-text">{this.props.text}</span></li>
             </div>
         )
 

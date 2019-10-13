@@ -5,7 +5,7 @@ import './QuestionList.css'
 const QuestionList = (props) => {
     return (
         <ul>
-            {props.questions.map((questionObj, index) => <Question text={questionObj.text} date={questionObj.date} tag={questionObj.tag} id={index} key={index} deleteQuestion={props.deleteQuestion} showModal={props.showModal} />)}
+            {props.questions.map((questionObj, index) => <Question text={questionObj.text} date={questionObj.date} tag={questionObj.tag} id={index} key={index} showModal={props.showModal} />)}
         </ul>
     )
 }

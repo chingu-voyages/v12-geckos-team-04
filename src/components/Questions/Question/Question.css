@@ -12,18 +12,5 @@
 }
 
 .question-text {
-    font-size: 2rem;
-}
-
-.delete-question-button {
-    cursor: pointer;
-    font-size: 2rem;
-    padding: 0 0.7rem;
-    position: absolute;
-    right: 3rem;
-    vertical-align: top;
-}
-
-.delete-question-button:hover {
-    color: red;
+    font-size: 1.5rem;
 }
