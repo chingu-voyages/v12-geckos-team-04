@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from '../../Questions/questions-styles/NewQuestionButton.module.css'
 
-
 const NewQuestionButton = (props) => {
     return (
         <div className={styles.wrapper}>
