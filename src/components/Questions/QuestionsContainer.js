@@ -152,12 +152,12 @@ class QuestionsContainer extends React.Component {
         return (
             <div className={styles.container}>
                 <div className={styles.content}>
-                    <Header title='My Questions' />
+                    <Header title='My Questions' side='left' />
                     <NewQuestionButton openForm={this.openFormModal} />
                     <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} />
                 </div>
                 <div className={styles.content}>
-                    <Header title='My Answered Questions' />
+                    <Header title='My Answered Questions' side='right' />
                     <QuestionList questions={this.state.answeredQuestions} showInfoModal={this.showInfoModal} />
                 </div>
                 {this.state.showFormModal && <FormModal addQuestion={this.addQuestion} updateList={this.updateList} closeFormModal={this.closeFormModal} />}

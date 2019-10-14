@@ -10,7 +10,9 @@ const FormModal = (props) => {
                 <input type="text" className={styles.questionInput} name="questioninput" />
                 <p className={styles.label}>Tag:</p>
                 <input type="text" className={styles.tagInput} name="taginput" />
-                <button className={styles.addButton} type="submit">Add</button>
+                <div>
+                    <button className={styles.addButton} type="submit">Add</button>
+                </div>
             </form>
         </div>
     )

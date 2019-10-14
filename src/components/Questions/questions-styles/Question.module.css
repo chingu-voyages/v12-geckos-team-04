@@ -1,14 +1,14 @@
 
 .listItem {
-    border-radius: 8px;
     cursor: pointer;
     list-style: none;
     padding: 20px;
     position: relative;
+    background: #eee;
 }
 
 .listItem:hover {
-    background: #eee;
+    background: #ddd;
 }
 
 .questionText {
