@@ -9,8 +9,10 @@ const AnswerModal = (props) => {
                 <ul className="modal-info-list">
                     <li className="modal-info-data">{props.text}</li>
                 </ul>
-                <textarea name="answer-input" className="answer-input" cols="30" rows="5"></textarea>
-                <button className="submit-answer-button">Submit</button>
+                <form action="submit" onSubmit={props.answerQuestion}>
+                    <textarea name="answerInput" className="answer-input" cols="30" rows="5"></textarea>
+                    <button className="submit-answer-button" type="submit">Submit</button>
+                </form>
             </div>
         </div>
     )

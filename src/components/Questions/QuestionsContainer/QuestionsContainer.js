@@ -11,6 +11,7 @@ class QuestionsContainer extends React.Component {
 
     state = {
         questions: [],
+        answeredQuestions: [],
         showFormModal: false,
         showInfoModal: false,
         requestedText: '',
@@ -48,6 +49,25 @@ class QuestionsContainer extends React.Component {
         e.target.elements.questioninput.value = ''
         this.setState(() => ({showFormModal: false}))
         this.updateLocalStorage(newQuestionList)
+    }
+
+    answerQuestion = (e) => {
+        e.preventDefault()
+        const answerInput = e.target.elements.answerInput.value.trim()
+        if (answerInput === '') {
+            alert('Please write an answer')
+            return
+        }
+        const newAnsweredQuestionObj = {
+            text: this.state.requestedText,
+            tag: this.state.requestedTag,
+            answer: answerInput
+        }
+        const newAnsweredQuestionsList = [...this.state.answeredQuestions, newAnsweredQuestionObj]
+
+        const newQuestionList = this.state.questions.filter((questionObj, index, array) => index !== this.state.requestedId)
+
+        this.setState(() => ({questions: newQuestionList, answeredQuestions: newAnsweredQuestionsList, showAnswerModal: false}))
     }
 
     closeFormModal = (e) => {
@@ -116,7 +136,7 @@ class QuestionsContainer extends React.Component {
                     {this.state.showFormModal && <FormModal addQuestion={this.addQuestion} updateList={this.updateList} closeFormModal={this.closeFormModal} />}
                     <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} />
                     {this.state.showInfoModal && <InfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
-                    {this.state.showAnswerModal && <AnswerModal id={this.state.requestedId} text={this.state.requestedText} closeAnswerModal={this.closeAnswerModal} />}
+                    {this.state.showAnswerModal && <AnswerModal id={this.state.requestedId} text={this.state.requestedText} closeAnswerModal={this.closeAnswerModal} answerQuestion={this.answerQuestion} />}
                 </div>
             </div>
         );
