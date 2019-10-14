@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../Questions/questions-styles/Header.module.css'
+import styles from './questions-styles/Header.module.css'
 
 const Header = (props) => {
     return (

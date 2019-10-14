@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import QuestionsContainer from './components/Questions/QuestionsContainer/QuestionsContainer'
+import QuestionsContainer from './components/Questions/QuestionsContainer'
 
 function App() {
   return (
