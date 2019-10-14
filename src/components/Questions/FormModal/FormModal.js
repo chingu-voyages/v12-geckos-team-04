@@ -1,7 +1,7 @@
 import React from 'react'
-import './Form.css'
+import './FormModal.css'
 
-class Form extends React.Component {
+class FormModal extends React.Component {
 
     state = {
         showDropdown: false
@@ -15,7 +15,7 @@ class Form extends React.Component {
 
         return (
 
-            <div className="form-wrapper" onClick={this.props.closeForm}>
+            <div className="form-wrapper" onClick={this.props.closeFormModal}>
                 <form className="form-content" action="submit" onSubmit={this.props.addQuestion}>
                     <p className="form-label">Question:</p>
                     <input type="text" className="question-input" name="questioninput" />
@@ -31,4 +31,4 @@ class Form extends React.Component {
 
 }
 
-export default Form
+export default FormModal

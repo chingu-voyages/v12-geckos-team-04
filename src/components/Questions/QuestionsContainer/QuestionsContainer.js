@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header'
-import Form from '../Form/Form'
+import FormModal from '../FormModal/FormModal'
 import QuestionList from '../QuestionList/QuestionList';
 import InfoModal from '../InfoModal/InfoModal'
 import AnswerModal from '../AnswerModal/AnswerModal'
@@ -11,7 +11,7 @@ class QuestionsContainer extends React.Component {
 
     state = {
         questions: [],
-        showForm: false,
+        showFormModal: false,
         showInfoModal: false,
         requestedText: '',
         requestedDate: '',
@@ -46,13 +46,13 @@ class QuestionsContainer extends React.Component {
         const newQuestionList = [...this.state.questions, newQuestionObj]
         this.setState(() => ({questions: newQuestionList}))
         e.target.elements.questioninput.value = ''
-        this.setState(() => ({showForm: false}))
+        this.setState(() => ({showFormModal: false}))
         this.updateLocalStorage(newQuestionList)
     }
 
-    closeForm = (e) => {
+    closeFormModal = (e) => {
         if (e.target.className === 'form-wrapper') {
-            this.setState(() => ({showForm: false}))
+            this.setState(() => ({showFormModal: false}))
         }
     }
 
@@ -84,8 +84,8 @@ class QuestionsContainer extends React.Component {
         this.updateLocalStorage(newQuestionList)
     }
 
-    openForm = () => {
-        this.setState(() => ({showForm: true}))
+    openFormModal = () => {
+        this.setState(() => ({showFormModal: true}))
     }
 
     updateLocalStorage = (newQuestionList) => {
@@ -112,8 +112,8 @@ class QuestionsContainer extends React.Component {
             <div className="questions-container">
                 <div className="questions-content">
                     <Header />
-                    <NewQuestionButton openForm={this.openForm} />
-                    {this.state.showForm && <Form addQuestion={this.addQuestion} updateList={this.updateList} closeForm={this.closeForm} />}
+                    <NewQuestionButton openForm={this.openFormModal} />
+                    {this.state.showFormModal && <FormModal addQuestion={this.addQuestion} updateList={this.updateList} closeFormModal={this.closeFormModal} />}
                     <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} />
                     {this.state.showInfoModal && <InfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
                     {this.state.showAnswerModal && <AnswerModal id={this.state.requestedId} text={this.state.requestedText} closeAnswerModal={this.closeAnswerModal} />}
