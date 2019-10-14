@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
+import Header from './components/AppHeader/AppHeader'
 import QuestionsContainer from './components/Questions/QuestionsContainer'
 
-function App() {
+const App = () => {
   return (
     <div>
-      <h1 className="app-title">Self-Learning App</h1>
+      <Header />
       <QuestionsContainer />
     </div>
   );
