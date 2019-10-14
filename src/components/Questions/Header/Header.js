@@ -1,10 +1,11 @@
 import React from 'react'
-import './Header.css'
+import styles from '../../Questions/questions-styles/Header.module.css'
+
 
 const Header = (props) => {
     return (
         <div>
-            <h1 className="questions-title">{props.title}:</h1>
+            <h1 className={styles.title}>{props.title}:</h1>
         </div>
     )
 }

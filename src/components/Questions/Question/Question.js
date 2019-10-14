@@ -1,5 +1,6 @@
 import React from 'react'
-import './Question.css'
+import styles from '../../Questions/questions-styles/Question.module.css'
+
 
 class Question extends React.Component {
 
@@ -11,7 +12,7 @@ class Question extends React.Component {
 
         return (
             <div>
-                <li className="list-item" onClick={(e) => this.props.showInfoModal(e, this.props.text, this.props.date, this.props.tag, this.props.id, this.props.answer)}><span className="question-text">{this.props.text}</span></li>
+                <li className={styles.listItem} onClick={(e) => this.props.showInfoModal(e, this.props.text, this.props.date, this.props.tag, this.props.id, this.props.answer)}><span className={styles.questionText}>{this.props.text}</span></li>
             </div>
         )
 

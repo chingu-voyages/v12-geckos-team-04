@@ -1,10 +1,11 @@
 import React from 'react'
-import './NewQuestionButton.css'
+import styles from '../../Questions/questions-styles/NewQuestionButton.module.css'
+
 
 const NewQuestionButton = (props) => {
     return (
-        <div className="new-question-button-wrapper">
-            <button className="new-question-button" onClick={props.openForm}>Add question</button>
+        <div className={styles.wrapper}>
+            <button className={styles.button} onClick={props.openForm}>Add question</button>
         </div>
     )
 }

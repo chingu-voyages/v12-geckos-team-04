@@ -1,4 +1,4 @@
-.questions-container {
+.container {
     background: rgb(193, 193, 204);
     bottom: 0;
     padding: 20px;
@@ -9,13 +9,7 @@
     justify-content: space-around;
 }
 
-.questions-content {
-    background: white;
-    border-radius: 8px;
-    width: 45%;
-}
-
-.answered-questions-content {
+.content {
     background: white;
     border-radius: 8px;
     width: 45%;

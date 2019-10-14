@@ -1,5 +1,5 @@
 import React from 'react'
-import './FormModal.css'
+import styles from '../../Questions/questions-styles/Modal.module.css'
 
 class FormModal extends React.Component {
 
@@ -15,13 +15,14 @@ class FormModal extends React.Component {
 
         return (
 
-            <div className="form-wrapper" onClick={this.props.closeFormModal}>
-                <form className="form-content" action="submit" onSubmit={this.props.addQuestion}>
-                    <p className="form-label">Question:</p>
-                    <input type="text" className="question-input" name="questioninput" />
-                    <p className="form-label">Tag:</p>
-                    <input type="text" className="tag-input" name="taginput" />
-                    <button className="add-button" type="submit">Add</button>
+            <div className={styles.wrapper} onClick={this.props.closeFormModal}>
+                <form className={styles.content} action="submit" onSubmit={this.props.addQuestion}>
+                    <div className={styles.closeButton}>&#10006;</div>
+                    <p className={styles.label}>Question:</p>
+                    <input type="text" className={styles.questionInput} name="questioninput" />
+                    <p className={styles.label}>Tag:</p>
+                    <input type="text" className={styles.tagInput} name="taginput" />
+                    <button className={styles.addButton} type="submit">Add</button>
                 </form>
             </div>
 

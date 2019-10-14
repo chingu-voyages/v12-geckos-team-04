@@ -1,5 +1,5 @@
 
-.list-item {
+.listItem {
     border-radius: 8px;
     cursor: pointer;
     list-style: none;
@@ -7,10 +7,10 @@
     position: relative;
 }
 
-.list-item:hover {
+.listItem:hover {
     background: #eee;
 }
 
-.question-text {
+.questionText {
     font-size: 1.5rem;
 }
