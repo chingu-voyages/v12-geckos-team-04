@@ -48,7 +48,7 @@ class QuestionsContainer extends React.Component {
         this.setState(() => ({questions: newQuestionList}))
         e.target.elements.questioninput.value = ''
         this.setState(() => ({showFormModal: false}))
-        this.updateLocalStorage(newQuestionList)
+        this.updateLocalStorage(newQuestionList, undefined)
     }
 
     answerQuestion = (e) => {
@@ -64,10 +64,9 @@ class QuestionsContainer extends React.Component {
             answer: answerInput
         }
         const newAnsweredQuestionsList = [...this.state.answeredQuestions, newAnsweredQuestionObj]
-
         const newQuestionList = this.state.questions.filter((questionObj, index, array) => index !== this.state.requestedId)
-
         this.setState(() => ({questions: newQuestionList, answeredQuestions: newAnsweredQuestionsList, showAnswerModal: false}))
+        this.updateLocalStorage(newQuestionList, newAnsweredQuestionsList)
     }
 
     closeFormModal = (e) => {
@@ -95,34 +94,46 @@ class QuestionsContainer extends React.Component {
             const savedQuestions = JSON.parse(localStorage.getItem('questions'))
             this.setState(() => ({questions: savedQuestions}))
         }
+        if (localStorage.getItem('answeredQuestions') && localStorage.getItem('answeredQuestions').length > 0) {
+            const savedAnsweredQuestions = JSON.parse(localStorage.getItem('answeredQuestions'))
+            this.setState(() => ({answeredQuestions: savedAnsweredQuestions}))
+        }
     }
 
     deleteQuestion = (indexOfQuestion) => {
         const newQuestionList = [...this.state.questions]
         newQuestionList.splice(indexOfQuestion, 1)
         this.setState(() => ({questions: newQuestionList}))
-        this.updateLocalStorage(newQuestionList)
+        this.updateLocalStorage(newQuestionList, undefined)
     }
 
     openFormModal = () => {
         this.setState(() => ({showFormModal: true}))
     }
 
-    updateLocalStorage = (newQuestionList) => {
-        if (localStorage.getItem('questions')) {
-            localStorage.removeItem('questions')
+    updateLocalStorage = (newQuestionList, newAnsweredQuestionsList) => {
+        if (newQuestionList !== undefined) {
+            if (localStorage.getItem('questions')) {
+                localStorage.removeItem('questions')
+            }
+            localStorage.setItem('questions', JSON.stringify(newQuestionList))
         }
-        localStorage.setItem('questions', JSON.stringify(newQuestionList))
+        if (newAnsweredQuestionsList !== undefined) {
+            if (localStorage.getItem('answeredQuestions')) {
+                localStorage.removeItem('answeredQuestions')
+            }
+            localStorage.setItem('answeredQuestions', JSON.stringify(newAnsweredQuestionsList))
+        }
     }
 
     showAnswerModal = () => {
         this.setState(() => ({showInfoModal: false, showAnswerModal: true}))
     }
 
-    showInfoModal = (e, text, date, tag, id) => {
+    showInfoModal = (e, text, date, tag, id, answer) => {
         e.persist();
         if (e.target.className !== 'delete-question-button') {
-            this.setState(() => ({showInfoModal: true, requestedText: text, requestedDate: date, requestedTag: tag, requestedId: id}))
+            this.setState(() => ({showInfoModal: true, requestedText: text, requestedDate: date, requestedTag: tag, requestedId: id, requestedAnswer: answer}))
         }
     }
 
@@ -131,12 +142,17 @@ class QuestionsContainer extends React.Component {
         return (
             <div className="questions-container">
                 <div className="questions-content">
-                    <Header />
+                    <Header title='My Questions' />
                     <NewQuestionButton openForm={this.openFormModal} />
                     {this.state.showFormModal && <FormModal addQuestion={this.addQuestion} updateList={this.updateList} closeFormModal={this.closeFormModal} />}
                     <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} />
                     {this.state.showInfoModal && <InfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
                     {this.state.showAnswerModal && <AnswerModal id={this.state.requestedId} text={this.state.requestedText} closeAnswerModal={this.closeAnswerModal} answerQuestion={this.answerQuestion} />}
+                </div>
+                <div className="answered-questions-content">
+                    <Header title='My Answered Questions' />
+                    <QuestionList questions={this.state.answeredQuestions} showInfoModal={this.showInfoModal} />
+                    {this.state.showInfoModal && <InfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} answer={this.state.requestedAnswer} />}
                 </div>
             </div>
         );

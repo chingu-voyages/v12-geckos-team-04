@@ -9,12 +9,11 @@ const InfoModal = (props) => {
                 <ul className="modal-info-list">
                     <li className="modal-info-label">Question</li>
                     <li className="modal-info-data">{props.text}</li>
-                    <li className="modal-info-label">Added</li>
-                    <li className="modal-info-data">{props.date}</li>
+                    {!props.answer && <div><li className="modal-info-label">Added</li><li className="modal-info-data">{props.date}</li></div>}
                     {props.tag && <React.Fragment><li className="modal-info-label">Tag</li> <li className="modal-info-data">{props.tag}</li></React.Fragment>}
+                    {props.answer && <React.Fragment><li className="modal-info-label">Answer</li> <li className="modal-info-data">{props.answer}</li></React.Fragment>}
                 </ul>
-                <button className="answer-button" onClick={() => {props.showAnswerModal()}}>Answer this question</button>
-                <button className="delete-button" onClick={() => {props.deleteQuestion(props.id)}}>Delete this question</button>
+                {!props.answer && <div><button className="answer-button" onClick={() => {props.showAnswerModal()}}>Answer this question</button> <button className="delete-button" onClick={() => {props.deleteQuestion(props.id)}}>Delete this question</button></div>}
             </div>
         </div>
     )

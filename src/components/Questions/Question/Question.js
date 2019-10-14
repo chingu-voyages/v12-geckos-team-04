@@ -11,7 +11,7 @@ class Question extends React.Component {
 
         return (
             <div>
-                <li className="list-item" onClick={(e) => this.props.showInfoModal(e, this.props.text, this.props.date, this.props.tag, this.props.id)}><span className="question-text">{this.props.text}</span></li>
+                <li className="list-item" onClick={(e) => this.props.showInfoModal(e, this.props.text, this.props.date, this.props.tag, this.props.id, this.props.answer)}><span className="question-text">{this.props.text}</span></li>
             </div>
         )
 
