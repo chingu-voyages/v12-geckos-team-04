@@ -13,7 +13,10 @@ const InfoModal = (props) => {
                     {props.tag && <React.Fragment><li className="modal-info-label">Tag</li> <li className="modal-info-data">{props.tag}</li></React.Fragment>}
                     {props.answer && <React.Fragment><li className="modal-info-label">Answer</li> <li className="modal-info-data">{props.answer}</li></React.Fragment>}
                 </ul>
-                {!props.answer && <div><button className="answer-button" onClick={() => {props.showAnswerModal()}}>Answer this question</button> <button className="delete-button" onClick={() => {props.deleteQuestion(props.id)}}>Delete this question</button></div>}
+                <div>
+                    {!props.answer && <button className="answer-button" onClick={() => {props.showAnswerModal()}}>Answer this question</button>}
+                    <button className={props.answer ? 'delete-answered-question-button' : 'delete-question-button'} onClick={(e) => {props.deleteQuestion(e, props.id)}}>Delete this question</button>
+                </div>
             </div>
         </div>
     )

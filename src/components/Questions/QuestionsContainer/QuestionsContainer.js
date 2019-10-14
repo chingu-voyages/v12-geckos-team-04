@@ -63,10 +63,10 @@ class QuestionsContainer extends React.Component {
             tag: this.state.requestedTag,
             answer: answerInput
         }
-        const newAnsweredQuestionsList = [...this.state.answeredQuestions, newAnsweredQuestionObj]
+        const newAnsweredQuestionList = [...this.state.answeredQuestions, newAnsweredQuestionObj]
         const newQuestionList = this.state.questions.filter((questionObj, index, array) => index !== this.state.requestedId)
-        this.setState(() => ({questions: newQuestionList, answeredQuestions: newAnsweredQuestionsList, showAnswerModal: false}))
-        this.updateLocalStorage(newQuestionList, newAnsweredQuestionsList)
+        this.setState(() => ({questions: newQuestionList, answeredQuestions: newAnsweredQuestionList, showAnswerModal: false}))
+        this.updateLocalStorage(newQuestionList, newAnsweredQuestionList)
     }
 
     closeFormModal = (e) => {
@@ -84,7 +84,7 @@ class QuestionsContainer extends React.Component {
 
     closeInfoModal = (e) => {
         e.persist()
-        if (e.target.className === 'modal-wrapper' || e.target.className === 'close-modal-button' || e.target.className === 'delete-button') {
+        if (e.target.className === 'modal-wrapper' || e.target.className === 'close-modal-button' || e.target.className === 'delete--question-button') {
             this.setState(() => ({showInfoModal: false}))
         }
     }
@@ -100,29 +100,37 @@ class QuestionsContainer extends React.Component {
         }
     }
 
-    deleteQuestion = (indexOfQuestion) => {
-        const newQuestionList = [...this.state.questions]
-        newQuestionList.splice(indexOfQuestion, 1)
-        this.setState(() => ({questions: newQuestionList}))
-        this.updateLocalStorage(newQuestionList, undefined)
+    deleteQuestion = (e, indexOfQuestion) => {
+        if (e.target.className === 'delete-question-button') {
+            const newQuestionList = [...this.state.questions]
+            newQuestionList.splice(indexOfQuestion, 1)
+            this.setState(() => ({questions: newQuestionList}))
+            this.updateLocalStorage(newQuestionList, undefined)
+        } else if (e.target.className === 'delete-answered-question-button') {
+            const newAnsweredQuestionList = [...this.state.answeredQuestions]
+            newAnsweredQuestionList.splice(indexOfQuestion, 1)
+            this.setState(() => ({answeredQuestions: newAnsweredQuestionList}))
+            this.updateLocalStorage(undefined, newAnsweredQuestionList)
+        }
+        this.setState(() => ({showInfoModal: false}))
     }
 
     openFormModal = () => {
         this.setState(() => ({showFormModal: true}))
     }
 
-    updateLocalStorage = (newQuestionList, newAnsweredQuestionsList) => {
+    updateLocalStorage = (newQuestionList, newAnsweredQuestionList) => {
         if (newQuestionList !== undefined) {
             if (localStorage.getItem('questions')) {
                 localStorage.removeItem('questions')
             }
             localStorage.setItem('questions', JSON.stringify(newQuestionList))
         }
-        if (newAnsweredQuestionsList !== undefined) {
+        if (newAnsweredQuestionList !== undefined) {
             if (localStorage.getItem('answeredQuestions')) {
                 localStorage.removeItem('answeredQuestions')
             }
-            localStorage.setItem('answeredQuestions', JSON.stringify(newAnsweredQuestionsList))
+            localStorage.setItem('answeredQuestions', JSON.stringify(newAnsweredQuestionList))
         }
     }
 
