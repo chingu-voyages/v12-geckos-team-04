@@ -1,10 +1,10 @@
 
 .listItem {
-    cursor: pointer;
     list-style: none;
     padding: 20px;
     position: relative;
     background: #cae6f8;
+    cursor: pointer;
 }
 
 .listItem:hover {

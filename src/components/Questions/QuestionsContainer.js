@@ -1,8 +1,9 @@
 import React from 'react';
+import AnsweredInfoModal from './AnsweredInfoModal'
 import Header from './Header'
 import FormModal from './FormModal'
 import QuestionList from './QuestionList';
-import InfoModal from './InfoModal'
+import UnansweredInfoModal from './UnansweredInfoModal'
 import AnswerModal from './AnswerModal'
 import NewQuestionButton from './NewQuestionButton'
 import styles from './questions-styles/QuestionsContainer.module.css'
@@ -13,7 +14,8 @@ class QuestionsContainer extends React.Component {
         questions: [],
         answeredQuestions: [],
         showFormModal: false,
-        showInfoModal: false,
+        showUnansweredInfoModal: false,
+        showAnsweredInfoModal: false,
         requestedText: '',
         requestedDate: '',
         requestedTag: '',
@@ -85,8 +87,9 @@ class QuestionsContainer extends React.Component {
 
     closeInfoModal = (e) => {
         e.persist()
-        if (e.target.className === 'Modal_wrapper__1mX1M' || e.target.className === 'Modal_closeButton__1vlLv') {
-            this.setState(() => ({showInfoModal: false}))
+        debugger
+        if (e.target.classList.contains('close-button') || e.target.classList.contains('Modal_wrapper__1mX1M')) {
+            this.setState(() => ({showUnansweredInfoModal: false, showAnsweredInfoModal: false}))
         }
     }
 
@@ -113,9 +116,8 @@ class QuestionsContainer extends React.Component {
             this.setState(() => ({answeredQuestions: newAnsweredQuestionList}))
             this.updateLocalStorage(undefined, newAnsweredQuestionList)
         }
-        this.setState(() => ({showInfoModal: false}))
+        this.setState(() => ({showUnansweredInfoModal: false, showAnsweredInfoModal: false}))
     }
-
 
     openFormModal = () => {
         this.setState(() => ({showFormModal: true}))
@@ -137,13 +139,15 @@ class QuestionsContainer extends React.Component {
     }
 
     showAnswerModal = () => {
-        this.setState(() => ({showInfoModal: false, showAnswerModal: true}))
+        this.setState(() => ({showUnansweredInfoModal: false, showAnswerModal: true}))
     }
 
-    showInfoModal = (e, text, date, tag, id, answer) => {
+    showInfoModal = (e, text, date, tag, id, answer, answered) => {
         e.persist();
-        if (e.target.className !== 'delete-question-button') {
-            this.setState(() => ({showInfoModal: true, requestedText: text, requestedDate: date, requestedTag: tag, requestedId: id, requestedAnswer: answer}))
+        if (answered === 'false') {
+            this.setState(() => ({showUnansweredInfoModal: true, requestedText: text, requestedDate: date, requestedTag: tag, requestedId: id, requestedAnswer: answer}))
+        } else {
+            this.setState(() => ({showAnsweredInfoModal: true, requestedText: text, requestedDate: date, requestedTag: tag, requestedId: id, requestedAnswer: answer}))
         }
     }
 
@@ -153,19 +157,20 @@ class QuestionsContainer extends React.Component {
             <div className={styles.container}>
                 <div className={styles.leftSide}>
                     <div className={styles.content}>
-                        <Header title='My Questions' side='left' />
-                        <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} />
+                        <Header title='My Questions' />
+                        <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} answered='false' />
                     </div>
                     <NewQuestionButton openForm={this.openFormModal} />
                 </div>
                 <div className={styles.rightSide}>
                     <div className={styles.content}>
-                        <Header title='My Answered Questions' side='right' />
-                        <QuestionList questions={this.state.answeredQuestions} showInfoModal={this.showInfoModal} />
+                        <Header title='My Answered Questions' />
+                        <QuestionList questions={this.state.answeredQuestions} showInfoModal={this.showInfoModal} answered='true' />
                     </div>
                 </div>
                 {this.state.showFormModal && <FormModal addQuestion={this.addQuestion} updateList={this.updateList} closeFormModal={this.closeFormModal} />}
-                {this.state.showInfoModal && <InfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} answer={this.state.requestedAnswer} />}
+                {this.state.showUnansweredInfoModal && <UnansweredInfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
+                {this.state.showAnsweredInfoModal && <AnsweredInfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} answer={this.state.requestedAnswer} />}
                 {this.state.showAnswerModal && <AnswerModal id={this.state.requestedId} text={this.state.requestedText} closeAnswerModal={this.closeAnswerModal} answerQuestion={this.answerQuestion} />}
             </div>
         );
