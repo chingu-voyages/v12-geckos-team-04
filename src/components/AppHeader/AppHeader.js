@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './AppHeader.module.css'
 
-const Header = () => {
+const AppHeader = () => {
     return (
         <div>
             <h1 className={styles.title}>Self-Learning App</h1>
@@ -9,4 +9,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default AppHeader
