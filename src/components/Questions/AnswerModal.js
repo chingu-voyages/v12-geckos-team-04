@@ -11,7 +11,7 @@ const AnswerModal = (props) => {
                 </ul>
                 <form action="submit" onSubmit={props.answerQuestion}>
                     <textarea name="answerInput" className={styles.answerInput} cols="30" rows="5"></textarea>
-                    <button className={styles.submitButton} type="submit">Submit</button>
+                    <button className={styles.button} type="submit">Submit</button>
                 </form>
             </div>
         </div>

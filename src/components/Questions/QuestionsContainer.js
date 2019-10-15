@@ -102,12 +102,12 @@ class QuestionsContainer extends React.Component {
     }
 
     deleteQuestion = (e, indexOfQuestion) => {
-        if (e.target.className === 'Modal_deleteUnansweredButton__X1ybt') {
+        if (e.target.classList.contains('Modal_deleteUnanswered__3kK-_')) {
             const newQuestionList = [...this.state.questions]
             newQuestionList.splice(indexOfQuestion, 1)
             this.setState(() => ({questions: newQuestionList}))
             this.updateLocalStorage(newQuestionList, undefined)
-        } else if (e.target.className === 'Modal_deleteAnsweredButton__QY0SK') {
+        } else if (e.target.classList.contains('Modal_deleteAnswered__2SJQ-')) {
             const newAnsweredQuestionList = [...this.state.answeredQuestions]
             newAnsweredQuestionList.splice(indexOfQuestion, 1)
             this.setState(() => ({answeredQuestions: newAnsweredQuestionList}))

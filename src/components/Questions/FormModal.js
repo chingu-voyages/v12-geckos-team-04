@@ -11,7 +11,7 @@ const FormModal = (props) => {
                 <p className={styles.label}>Tag:</p>
                 <input type="text" className={styles.tagInput} name="taginput" />
                 <div>
-                    <button className={styles.addButton} type="submit">Add</button>
+                    <button className={styles.button} type="submit">Add</button>
                 </div>
             </form>
         </div>
