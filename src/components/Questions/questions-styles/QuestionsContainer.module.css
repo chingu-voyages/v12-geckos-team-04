@@ -18,5 +18,7 @@
     border-radius: 8px;
     width: 100%;
     min-height: 80%;
-    overflow: hidden;
+    overflow: auto;
+    max-width: 45vw;
+    max-height: 70vh;
 }
