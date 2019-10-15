@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './UsefulLinksContainer.module.scss'
 
 class UsefulLinksContainer extends React.Component {
 
@@ -13,11 +14,7 @@ class UsefulLinksContainer extends React.Component {
         ]
     }
 
-    componentDidMount() {
-
-    }
-
-    getFavicons = (link) => {
+    getUrlAndFavicon = (link) => {
         let index
         index = link.indexOf('com')
         if (index === -1) {
@@ -25,14 +22,16 @@ class UsefulLinksContainer extends React.Component {
         }
         let start = link.substr(0, index + 3)
         let iconUrl = start + '/favicon.ico'
-        return <img src={iconUrl} width="20px" height="20px"></img>
+        return <li className={styles.listItem}><span>{link}</span><img src={iconUrl} width="20px" height="20px"></img></li>
     }
 
     render() {
 
         return (
             <div>
-                {this.state.links.map(this.getFavicons)}
+                <ul>
+                    {this.state.links.map(this.getUrlAndFavicon)}
+                </ul>
             </div>
         )
     }
