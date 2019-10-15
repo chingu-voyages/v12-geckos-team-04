@@ -5,6 +5,7 @@
     position: relative;
     background: #cae6f8;
     cursor: pointer;
+    margin: 5px;
 }
 
 .listItem:hover {
