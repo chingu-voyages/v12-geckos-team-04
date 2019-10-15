@@ -2,10 +2,14 @@ import React from 'react'
 import styles from './questions-styles/Modal.module.css'
 
 const AnswerModal = (props) => {
+
+    let closeButtonClasses = `close-button ${styles.closeButton}`
+    let wrapperClasses = `modal-wrapper ${styles.wrapper}`
+
     return (
-        <div className={styles.wrapper} onClick={props.closeAnswerModal}>
+        <div className={wrapperClasses} onClick={props.closeModal}>
             <div className={styles.content}>
-                <div className={styles.closeButton}>&#10006;</div>
+                <div className={closeButtonClasses}>&#10006;</div>
                 <ul className={styles.infoList}>
                     <li className={styles.question}>{props.text}</li>
                 </ul>

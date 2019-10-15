@@ -71,25 +71,10 @@ class QuestionsContainer extends React.Component {
         this.updateLocalStorage(newQuestionList, newAnsweredQuestionList)
     }
 
-    closeFormModal = (e) => {
+    closeModals = (e) => {
         e.persist()
-        if (e.target.className === 'Modal_wrapper__1mX1M' || e.target.className === 'Modal_closeButton__1vlLv') {
-            this.setState(() => ({showFormModal: false}))
-        }
-    }
-
-    closeAnswerModal = (e) => {
-        e.persist()
-        if (e.target.className === 'Modal_wrapper__1mX1M' || e.target.className === 'Modal_closeButton__1vlLv') {
-            this.setState(() => ({showAnswerModal: false}))
-        }
-    }
-
-    closeInfoModal = (e) => {
-        e.persist()
-        debugger
-        if (e.target.classList.contains('close-button') || e.target.classList.contains('Modal_wrapper__1mX1M')) {
-            this.setState(() => ({showUnansweredInfoModal: false, showAnsweredInfoModal: false}))
+        if (e.target.classList.contains('close-button') || e.target.classList.contains('modal-wrapper')) {
+            this.setState(() => ({showUnansweredInfoModal: false, showAnsweredInfoModal: false, showFormModal: false, showAnswerModal: false}))
         }
     }
 
@@ -105,12 +90,12 @@ class QuestionsContainer extends React.Component {
     }
 
     deleteQuestion = (e, indexOfQuestion) => {
-        if (e.target.classList.contains('Modal_deleteUnanswered__3kK-_')) {
+        if (e.target.classList.contains('delete-unanswered')) {
             const newQuestionList = [...this.state.questions]
             newQuestionList.splice(indexOfQuestion, 1)
             this.setState(() => ({questions: newQuestionList}))
             this.updateLocalStorage(newQuestionList, undefined)
-        } else if (e.target.classList.contains('Modal_deleteAnswered__2SJQ-')) {
+        } else if (e.target.classList.contains('delete-answered')) {
             const newAnsweredQuestionList = [...this.state.answeredQuestions]
             newAnsweredQuestionList.splice(indexOfQuestion, 1)
             this.setState(() => ({answeredQuestions: newAnsweredQuestionList}))
@@ -168,10 +153,10 @@ class QuestionsContainer extends React.Component {
                         <QuestionList questions={this.state.answeredQuestions} showInfoModal={this.showInfoModal} answered='true' />
                     </div>
                 </div>
-                {this.state.showFormModal && <FormModal addQuestion={this.addQuestion} updateList={this.updateList} closeFormModal={this.closeFormModal} />}
-                {this.state.showUnansweredInfoModal && <UnansweredInfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
-                {this.state.showAnsweredInfoModal && <AnsweredInfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} answer={this.state.requestedAnswer} />}
-                {this.state.showAnswerModal && <AnswerModal id={this.state.requestedId} text={this.state.requestedText} closeAnswerModal={this.closeAnswerModal} answerQuestion={this.answerQuestion} />}
+                {this.state.showFormModal && <FormModal addQuestion={this.addQuestion} updateList={this.updateList} closeModal={this.closeModals} />}
+                {this.state.showUnansweredInfoModal && <UnansweredInfoModal closeModal={this.closeModals} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} />}
+                {this.state.showAnsweredInfoModal && <AnsweredInfoModal closeModal={this.closeModals} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} answer={this.state.requestedAnswer} />}
+                {this.state.showAnswerModal && <AnswerModal id={this.state.requestedId} text={this.state.requestedText} closeModal={this.closeModals} answerQuestion={this.answerQuestion} />}
             </div>
         );
     }
