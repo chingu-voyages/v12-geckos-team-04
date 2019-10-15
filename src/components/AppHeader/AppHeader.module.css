@@ -1,5 +1,10 @@
+.wrapper {
+    background: #062963;
+    padding: 0.5rem;
+}
+
 .title {
+    color: #FEFFFF;
     text-align: center;
-    margin-top: 1rem;
     font-size: 3rem;
 }
