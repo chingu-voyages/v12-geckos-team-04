@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './questions-styles/Modal.module.css'
+import styles from './questions-styles/Modal.module.scss'
 
 const UnansweredInfoModal = (props) => {
 

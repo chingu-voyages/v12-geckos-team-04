@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './questions-styles/NewQuestionButton.module.css'
+import styles from './questions-styles/NewQuestionButton.module.scss'
 
 const NewQuestionButton = (props) => {
     return (

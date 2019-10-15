@@ -1,9 +1,11 @@
+@import '_base.scss';
+
 .wrapper {
-    background: #8ec3e7;
+    background: $babyBlue;
     border-radius: 8px 8px 0 0;
 }
 
 .title {
-    padding: 2rem;
+    padding: $large;
     text-align: center;
 }

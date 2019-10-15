@@ -1,0 +1,14 @@
+/* colors */
+
+$blueGradient: linear-gradient(to bottom, #20498a 5%, #3773d3 100%);
+$blueGradientDarker: linear-gradient(to bottom, darken(#20498a, 10) 5%, darken(#3773d3, 10) 100%);
+$redGradient: linear-gradient(to bottom, #fe1a00 5%, #c72918 100%);
+$redGradientDarker: linear-gradient(to bottom, darken(#fe1a00, 10) 5%, darken(#c72918, 10) 100%);
+$babyBlue: #89CFF0;
+
+/* font-sizes */
+
+$vSmall: 0.5rem;
+$small: 1rem;
+$medium: 1.5rem;
+$large: 2rem;

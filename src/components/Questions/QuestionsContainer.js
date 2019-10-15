@@ -6,7 +6,7 @@ import QuestionList from './QuestionList';
 import UnansweredInfoModal from './UnansweredInfoModal'
 import AnswerModal from './AnswerModal'
 import NewQuestionButton from './NewQuestionButton'
-import styles from './questions-styles/QuestionsContainer.module.css'
+import styles from './questions-styles/QuestionsContainer.module.scss'
 
 class QuestionsContainer extends React.Component {
 
