@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './UsefulLinksContainer.module.scss'
 import Header from './Header'
 import LinkList from './LinkList'
+import AddLinkButton from './AddLinkButton'
 
 class UsefulLinksContainer extends React.Component {
 
@@ -16,12 +17,18 @@ class UsefulLinksContainer extends React.Component {
         ]
     }
 
+    addLink = (e) => {
+        e.preventDefault()
+        console.log('New link added')
+    }
+
     render() {
 
         return (
             <div className={styles.wrapper}>
                 <Header />
                 <LinkList links={this.state.links} />
+                <AddLinkButton addLink={this.addLink} />
             </div>
         )
     }
