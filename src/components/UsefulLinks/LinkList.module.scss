@@ -1,0 +1,32 @@
+.listItem:nth-child(even) {
+    background: white;
+}
+
+.listItem:nth-child(odd) {
+    background: rgb(245, 245, 245);
+}
+
+.listItem {
+    list-style: none;
+    padding: 1rem;
+}
+
+.favicon {
+    outline: 1px solid purple;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+}
+
+.linkText {
+    padding-left: 1rem;
+    padding: 1rem;
+    color: #1665aa;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.linkText:hover {
+    color: darken(#014886, 10);
+}
+
