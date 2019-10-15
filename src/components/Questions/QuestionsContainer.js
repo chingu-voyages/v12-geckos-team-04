@@ -151,14 +151,18 @@ class QuestionsContainer extends React.Component {
 
         return (
             <div className={styles.container}>
-                <div className={styles.content}>
-                    <Header title='My Questions' side='left' />
+                <div className={styles.leftSide}>
+                    <div className={styles.content}>
+                        <Header title='My Questions' side='left' />
+                        <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} />
+                    </div>
                     <NewQuestionButton openForm={this.openFormModal} />
-                    <QuestionList questions={this.state.questions} deleteQuestion={this.deleteQuestion} showInfoModal={this.showInfoModal} />
                 </div>
-                <div className={styles.content}>
-                    <Header title='My Answered Questions' side='right' />
-                    <QuestionList questions={this.state.answeredQuestions} showInfoModal={this.showInfoModal} />
+                <div className={styles.rightSide}>
+                    <div className={styles.content}>
+                        <Header title='My Answered Questions' side='right' />
+                        <QuestionList questions={this.state.answeredQuestions} showInfoModal={this.showInfoModal} />
+                    </div>
                 </div>
                 {this.state.showFormModal && <FormModal addQuestion={this.addQuestion} updateList={this.updateList} closeFormModal={this.closeFormModal} />}
                 {this.state.showInfoModal && <InfoModal closeInfoModal={this.closeInfoModal} deleteQuestion={this.deleteQuestion} showAnswerModal={this.showAnswerModal} id={this.state.requestedId} text={this.state.requestedText} date={this.state.requestedDate} tag={this.state.requestedTag} answer={this.state.requestedAnswer} />}

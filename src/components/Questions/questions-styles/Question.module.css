@@ -4,11 +4,11 @@
     list-style: none;
     padding: 20px;
     position: relative;
-    background: #eee;
+    background: #cae6f8;
 }
 
 .listItem:hover {
-    background: #ddd;
+    background: #dcf0fc;
 }
 
 .questionText {

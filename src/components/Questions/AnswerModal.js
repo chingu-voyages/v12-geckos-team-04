@@ -7,7 +7,7 @@ const AnswerModal = (props) => {
             <div className={styles.content}>
                 <div className={styles.closeButton}>&#10006;</div>
                 <ul className={styles.infoList}>
-                    <li className={styles.infoData}>{props.text}</li>
+                    <li className={styles.question}>{props.text}</li>
                 </ul>
                 <form action="submit" onSubmit={props.answerQuestion}>
                     <textarea name="answerInput" className={styles.answerInput} cols="30" rows="5"></textarea>
