@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './LinkList.module.scss'
+import defaultIcon from './images/default.ico'
 
 class LinkList extends React.Component {
 
-    getUrlAndFavicon = (link, index) => {
-        debugger
+    getUrlAndIcon = (link, index) => {
         let domainIndex
         domainIndex = link.indexOf('com')
         if (domainIndex === -1) {
@@ -19,7 +19,13 @@ class LinkList extends React.Component {
         if (link.length > 150) {
             link = link.substr(0, 120) + '...'
         }
-        return <li key={index} className={styles.listItem}><img alt={'Favicon for website'} className={styles.favicon} src={iconUrl}></img><span className={styles.linkText}>{link}</span><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
+        return <li key={index} className={styles.listItem}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><span className={styles.linkText}>{link}</span><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
+    }
+
+    handleError = (e) => {
+        if (e.target.src !== defaultIcon) {
+            e.target.src = defaultIcon
+        }
     }
 
     render() {
@@ -27,7 +33,7 @@ class LinkList extends React.Component {
         return (
             <div>
                 <ul className={styles.list}>
-                    {this.props.links.map(this.getUrlAndFavicon)}
+                    {this.props.links.map(this.getUrlAndIcon)}
                 </ul>
             </div>
         )

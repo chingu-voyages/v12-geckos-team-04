@@ -21,6 +21,7 @@ class UsefulLinksContainer extends React.Component {
         e.preventDefault()
         e.persist()
         const textInput = e.target.elements.textInput.value
+        e.target.elements.textInput.value = ''
         let updatedList = [...this.state.links, textInput]
         localStorage.setItem('savedLinks', JSON.stringify(updatedList))
         this.setState(() => ({links: updatedList}))
@@ -34,12 +35,17 @@ class UsefulLinksContainer extends React.Component {
         this.setState(() => ({links: updatedList}))
     }
 
+    handleError = (e) => {
+        e.persist()
+        console.log(e)
+    }
+
     render() {
 
         return (
             <div className={styles.wrapper}>
                 <Header />
-                <LinkList links={this.state.links} deleteLink={this.deleteLink} />
+                <LinkList links={this.state.links} deleteLink={this.deleteLink} handleError={this.handleError} />
                 <AddLinkButton addLink={this.addLink} />
             </div>
         )
