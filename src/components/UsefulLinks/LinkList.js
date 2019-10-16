@@ -5,9 +5,9 @@ import defaultIcon from './images/default.ico'
 class LinkList extends React.Component {
 
     getUrlAndIcon = (link, index) => {
-        let href
+        const linkText = link
         if (link.substr(0, 4) !== 'http') {
-            href = 'http://' + link
+            link = 'http://' + link
         }
         let domainIndex
         domainIndex = link.indexOf('com')
@@ -15,11 +15,11 @@ class LinkList extends React.Component {
             domainIndex = link.indexOf('org')
         }
         let start = link.substr(0, domainIndex + 3)
-        let iconUrl = href + '/favicon.ico'
+        let iconUrl = start + '/favicon.ico'
         if (link.length > 150) {
             link = link.substr(0, 120) + '...'
         }
-        return <li key={index} className={styles.listItem}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={href} target='_blank' className={styles.linkText}>{link}</a><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
+        return <li key={index} className={styles.listItem}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={link} target='_blank' className={styles.linkText}>{linkText}</a><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
     }
 
     handleError = (e) => {
