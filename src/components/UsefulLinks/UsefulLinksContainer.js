@@ -7,9 +7,7 @@ import AddLinkButton from './AddLinkButton'
 class UsefulLinksContainer extends React.Component {
 
     state = {
-        links: [
-
-        ]
+        links: []
     }
 
     componentDidMount() {
@@ -28,12 +26,20 @@ class UsefulLinksContainer extends React.Component {
         this.setState(() => ({links: updatedList}))
     }
 
+    deleteLink = (e, index) => {
+        const savedLinks = JSON.parse(localStorage.getItem('savedLinks'))
+        savedLinks.splice(index, 1)
+        const updatedList = savedLinks
+        localStorage.setItem('savedLinks', JSON.stringify(updatedList))
+        this.setState(() => ({links: updatedList}))
+    }
+
     render() {
 
         return (
             <div className={styles.wrapper}>
                 <Header />
-                <LinkList links={this.state.links} />
+                <LinkList links={this.state.links} deleteLink={this.deleteLink} />
                 <AddLinkButton addLink={this.addLink} />
             </div>
         )

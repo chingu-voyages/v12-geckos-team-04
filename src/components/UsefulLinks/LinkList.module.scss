@@ -10,6 +10,7 @@
     list-style: none;
     padding: 1rem;
     white-space: nowrap;
+    position: relative;
 }
 
 .favicon {
@@ -19,7 +20,6 @@
 }
 
 .linkText {
-    padding-left: 1rem;
     padding: 1rem;
     color: #1665aa;
     font-weight: 600;
@@ -30,3 +30,14 @@
     color: darken(#014886, 10);
 }
 
+.closeButton {
+    cursor: pointer;
+    font-size: 1.8rem;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.closeButton:hover {
+    color: red;
+}

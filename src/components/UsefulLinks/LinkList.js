@@ -3,18 +3,23 @@ import styles from './LinkList.module.scss'
 
 class LinkList extends React.Component {
 
-    getUrlAndFavicon = (link) => {
-        let index
-        index = link.indexOf('com')
-        if (index === -1) {
-            index = link.indexOf('org')
+    getUrlAndFavicon = (link, index) => {
+        debugger
+        let domainIndex
+        domainIndex = link.indexOf('com')
+        if (domainIndex === -1) {
+            domainIndex = link.indexOf('org')
         }
-        let start = link.substr(0, index + 3)
+        let start = link.substr(0, domainIndex + 3)
         let iconUrl = start + '/favicon.ico'
+        if (iconUrl.substr(0, 4) !== 'http') {
+            const protocol = 'http://'
+            iconUrl = protocol + iconUrl
+        }
         if (link.length > 150) {
             link = link.substr(0, 120) + '...'
         }
-        return <li className={styles.listItem}><img className={styles.favicon} src={iconUrl}></img><span className={styles.linkText}>{link}</span></li>
+        return <li key={index} className={styles.listItem}><img alt={'Favicon for website'} className={styles.favicon} src={iconUrl}></img><span className={styles.linkText}>{link}</span><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
     }
 
     render() {
