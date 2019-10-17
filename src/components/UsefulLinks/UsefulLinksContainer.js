@@ -12,13 +12,19 @@ class UsefulLinksContainer extends React.Component {
         requestedIndex: '',
         requestedLinkText: '',
         showModal: false,
-        description: ''
     }
 
     addDescription = (e) => {
         e.preventDefault()
-        const questionInput = e.target.elements.questionInput.value.trim()
-        this.setState(() => ({description: questionInput}))
+        const descriptionInput = e.target.elements.questionInput.value.trim()
+        let updatedLinks = JSON.parse(localStorage.getItem('savedLinks'))
+        for (let i = 0; i < updatedLinks.length; i++) {
+            if (updatedLinks.indexOf(updatedLinks[i]) === this.state.requestedIndex) {
+                updatedLinks[i].description = descriptionInput
+            }
+        }
+        localStorage.setItem('savedLinks', JSON.stringify(updatedLinks))
+        this.setState(() => ({links: updatedLinks, showModal: false}))
     }
 
     closeModal = (e) => {
