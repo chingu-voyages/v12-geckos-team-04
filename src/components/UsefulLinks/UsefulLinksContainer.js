@@ -74,14 +74,17 @@ class UsefulLinksContainer extends React.Component {
         console.log(e)
     }
 
-    showModal = (index, linkText, description) => {
-        this.setState(() => ({requestedIndex: index, requestedLinkText: linkText, requestedDescription: description}))
-        if (description === 'Add description') {
-            this.setState(() => ({showModal: true}))
+    showModal = (e, index, linkText, description) => {
+        if (e.target.classList.contains('closeButton') || e.target.classList.contains('linkText')) {
+            return
         } else {
-            this.setState(() => ({showInfoModal: true}))
+            this.setState(() => ({requestedIndex: index, requestedLinkText: linkText, requestedDescription: description}))
+            if (description === 'Add description') {
+                this.setState(() => ({showModal: true}))
+            } else {
+                this.setState(() => ({showInfoModal: true}))
+            }
         }
-
     }
 
     render() {

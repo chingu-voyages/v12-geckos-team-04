@@ -2,6 +2,9 @@ import React from 'react'
 import styles from './LinkList.module.scss'
 import defaultIcon from './images/default.ico'
 
+const linkTextClasses = `${styles.linkText} linkText`
+const closeButtonClasses = `${styles.closeButton} closeButton`
+
 class LinkList extends React.Component {
 
     getUrlAndIcon = (linkObj, index) => {
@@ -25,7 +28,7 @@ class LinkList extends React.Component {
         } else {
             description = 'Add description'
         }
-        return <li key={index} className={styles.listItem} onClick={() => {this.props.showModal(index, linkText, description)}}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={linkText} target='_blank' className={styles.linkText}>{linkText}</a><span>{description}</span><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
+        return <li key={index} className={styles.listItem} onClick={(e) => {this.props.showModal(e, index, linkText, description)}}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={linkText} target='_blank' className={linkTextClasses}>{linkText}</a><span>{description}</span><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={closeButtonClasses}>&times;</span></li>
     }
 
     handleError = (e) => {

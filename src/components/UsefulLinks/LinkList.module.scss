@@ -1,9 +1,17 @@
 .listItem:nth-child(even) {
-    background: white;
+    background: rgb(249, 249, 249);
 }
 
 .listItem:nth-child(odd) {
-    background: rgb(245, 245, 245);
+    background: rgb(235, 235, 235);
+}
+
+.listItem:nth-child(even):hover {
+    background: darken(rgb(249, 249, 249), 10);
+}
+
+.listItem:nth-child(odd):hover {
+    background: darken(rgb(235, 235, 235), 10);
 }
 
 .listItem {
