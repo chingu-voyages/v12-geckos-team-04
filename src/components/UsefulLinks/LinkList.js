@@ -4,22 +4,22 @@ import defaultIcon from './images/default.ico'
 
 class LinkList extends React.Component {
 
-    getUrlAndIcon = (link, index) => {
-        const linkText = link
-        if (link.substr(0, 4) !== 'http') {
-            link = 'http://' + link
+    getUrlAndIcon = (linkObj, index) => {
+        let linkText = linkObj.linkText
+        if (linkObj.linkText.substr(0, 4) !== 'http') {
+            linkText = 'http://' + linkText
         }
         let domainIndex
-        domainIndex = link.indexOf('com')
+        domainIndex = linkText.indexOf('com')
         if (domainIndex === -1) {
-            domainIndex = link.indexOf('org')
+            domainIndex = linkText.indexOf('org')
         }
-        let start = link.substr(0, domainIndex + 3)
+        let start = linkText.substr(0, domainIndex + 3)
         let iconUrl = start + '/favicon.ico'
-        if (link.length > 150) {
-            link = link.substr(0, 120) + '...'
+        if (linkText.length > 150) {
+            linkText = linkText.substr(0, 120) + '...'
         }
-        return <li key={index} className={styles.listItem} onClick={() => {this.props.showModal(index, linkText)}}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={link} target='_blank' className={styles.linkText}>{linkText}</a><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
+        return <li key={index} className={styles.listItem} onClick={() => {this.props.showModal(index, linkText)}}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={linkText} target='_blank' className={styles.linkText}>{linkText}</a><span>{this.props.description}</span><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
     }
 
     handleError = (e) => {

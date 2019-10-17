@@ -11,7 +11,14 @@ class UsefulLinksContainer extends React.Component {
         links: [],
         requestedIndex: '',
         requestedLinkText: '',
-        showModal: false
+        showModal: false,
+        description: ''
+    }
+
+    addDescription = (e) => {
+        e.preventDefault()
+        const questionInput = e.target.elements.questionInput.value.trim()
+        this.setState(() => ({description: questionInput}))
     }
 
     closeModal = (e) => {
@@ -36,7 +43,11 @@ class UsefulLinksContainer extends React.Component {
             return
         }
         e.target.elements.textInput.value = ''
-        let updatedList = [...this.state.links, textInput]
+        const newLinkObj = {
+            linkText: textInput,
+            description: ''
+        }
+        let updatedList = [...this.state.links, newLinkObj]
         localStorage.setItem('savedLinks', JSON.stringify(updatedList))
         this.setState(() => ({links: updatedList}))
     }
@@ -64,7 +75,7 @@ class UsefulLinksContainer extends React.Component {
         return (
             <div className={styles.wrapper}>
                 <Header />
-                <LinkList links={this.state.links} deleteLink={this.deleteLink} handleError={this.handleError} showModal={this.showModal} />
+                <LinkList links={this.state.links} deleteLink={this.deleteLink} handleError={this.handleError} showModal={this.showModal} description={this.state.description} />
                 <AddLinkButton addLink={this.addLink} />
                 {this.state.showModal && <Modal addDescription={this.addDescription} closeModal={this.closeModal} linkText={this.state.requestedLinkText} />}
             </div>

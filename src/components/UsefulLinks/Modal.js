@@ -12,7 +12,7 @@ const Modal = (props) => {
                 <p className={styles.label}>{props.linkText}</p>
                 <div className={closeButtonClasses}>&#10006;</div>
                 <p className={styles.label}>Add description:</p>
-                <input type="text" className={styles.descriptionInput} name="questioninput" />
+                <input type="text" className={styles.descriptionInput} name="questionInput" />
                 <div>
                     <button className={styles.button} type="submit">Add</button>
                 </div>
