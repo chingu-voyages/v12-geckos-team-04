@@ -1,0 +1,32 @@
+.form {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    width: 70%;
+    align-items: center;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.input {
+    font-size: 1.5rem;
+    width: 100%;
+    padding: 0.4rem;
+}
+
+.button {
+	border-radius: 8px;
+	display: inline-block;
+	cursor: pointer;
+	color:#feffff;
+	font-size: 1.5rem;
+	font-weight: bold;
+    padding: 8px 24px;
+    box-shadow: inset 0px 1px 0px 0px #2152a1;
+    background: linear-gradient(to bottom, #20498a 5%, #3773d3 100%);
+    white-space: nowrap;
+}
+
+.button:hover {
+    background: linear-gradient(to bottom, darken(#20498a, 10) 5%, darken(#3773d3, 10) 100%);
+}
