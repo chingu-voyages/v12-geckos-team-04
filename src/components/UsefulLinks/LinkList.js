@@ -19,7 +19,7 @@ class LinkList extends React.Component {
         if (link.length > 150) {
             link = link.substr(0, 120) + '...'
         }
-        return <li key={index} className={styles.listItem}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={link} target='_blank' className={styles.linkText}>{linkText}</a><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
+        return <li key={index} className={styles.listItem} onClick={() => {this.props.showModal(index, linkText)}}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={link} target='_blank' className={styles.linkText}>{linkText}</a><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
     }
 
     handleError = (e) => {

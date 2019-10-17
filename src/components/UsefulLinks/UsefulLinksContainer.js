@@ -3,11 +3,21 @@ import styles from './UsefulLinksContainer.module.scss'
 import Header from './Header'
 import LinkList from './LinkList'
 import AddLinkButton from './AddLinkButton'
+import Modal from './Modal'
 
 class UsefulLinksContainer extends React.Component {
 
     state = {
-        links: []
+        links: [],
+        requestedIndex: '',
+        requestedLinkText: '',
+        showModal: false
+    }
+
+    closeModal = (e) => {
+        if (e.target.classList.contains('modalWrapper') || e.target.classList.contains('closeButton')) {
+            this.setState(() => ({showModal: false}))
+        }
     }
 
     componentDidMount() {
@@ -44,13 +54,19 @@ class UsefulLinksContainer extends React.Component {
         console.log(e)
     }
 
+    showModal = (index, linkText) => {
+        this.setState(() => ({requestedIndex: index, requestedLinkText: linkText, showModal: true}))
+
+    }
+
     render() {
 
         return (
             <div className={styles.wrapper}>
                 <Header />
-                <LinkList links={this.state.links} deleteLink={this.deleteLink} handleError={this.handleError} />
+                <LinkList links={this.state.links} deleteLink={this.deleteLink} handleError={this.handleError} showModal={this.showModal} />
                 <AddLinkButton addLink={this.addLink} />
+                {this.state.showModal && <Modal addDescription={this.addDescription} closeModal={this.closeModal} linkText={this.state.requestedLinkText} />}
             </div>
         )
     }
