@@ -20,7 +20,11 @@ class UsefulLinksContainer extends React.Component {
     addLink = (e) => {
         e.preventDefault()
         e.persist()
-        const textInput = e.target.elements.textInput.value
+        const textInput = e.target.elements.textInput.value.trim()
+        if (textInput === '') {
+            alert('Please enter a link')
+            return
+        }
         e.target.elements.textInput.value = ''
         let updatedList = [...this.state.links, textInput]
         localStorage.setItem('savedLinks', JSON.stringify(updatedList))
