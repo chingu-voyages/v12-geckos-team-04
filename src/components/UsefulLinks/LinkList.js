@@ -19,8 +19,13 @@ class LinkList extends React.Component {
         if (linkText.length > 150) {
             linkText = linkText.substr(0, 120) + '...'
         }
-        const description = linkObj.description
-        return <li key={index} className={styles.listItem} onClick={() => {this.props.showModal(index, linkText)}}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={linkText} target='_blank' className={styles.linkText}>{linkText}</a><span>{description}</span><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
+        let description
+        if (linkObj.description) {
+            description = linkObj.description
+        } else {
+            description = 'Add description'
+        }
+        return <li key={index} className={styles.listItem} onClick={() => {this.props.showModal(index, linkText, description)}}><img onError={this.handleError} alt={'Icon for website'} className={styles.favicon} src={iconUrl}></img><a href={linkText} target='_blank' className={styles.linkText}>{linkText}</a><span>{description}</span><span onClick={(e) => {this.props.deleteLink(e, index)}} title="Delete this link" className={styles.closeButton}>&times;</span></li>
     }
 
     handleError = (e) => {
@@ -41,5 +46,6 @@ class LinkList extends React.Component {
     }
 
 }
+
 
 export default LinkList

@@ -4,6 +4,7 @@ import Header from './Header'
 import LinkList from './LinkList'
 import AddLinkButton from './AddLinkButton'
 import Modal from './Modal'
+import InfoModal from './InfoModal'
 
 class UsefulLinksContainer extends React.Component {
 
@@ -11,7 +12,9 @@ class UsefulLinksContainer extends React.Component {
         links: [],
         requestedIndex: '',
         requestedLinkText: '',
+        requestedDescription: '',
         showModal: false,
+        showInfoModal: false
     }
 
     addDescription = (e) => {
@@ -29,7 +32,7 @@ class UsefulLinksContainer extends React.Component {
 
     closeModal = (e) => {
         if (e.target.classList.contains('modalWrapper') || e.target.classList.contains('closeButton')) {
-            this.setState(() => ({showModal: false}))
+            this.setState(() => ({showModal: false, showInfoModal: false}))
         }
     }
 
@@ -71,8 +74,13 @@ class UsefulLinksContainer extends React.Component {
         console.log(e)
     }
 
-    showModal = (index, linkText) => {
-        this.setState(() => ({requestedIndex: index, requestedLinkText: linkText, showModal: true}))
+    showModal = (index, linkText, description) => {
+        this.setState(() => ({requestedIndex: index, requestedLinkText: linkText, requestedDescription: description}))
+        if (description === 'Add description') {
+            this.setState(() => ({showModal: true}))
+        } else {
+            this.setState(() => ({showInfoModal: true}))
+        }
 
     }
 
@@ -83,7 +91,8 @@ class UsefulLinksContainer extends React.Component {
                 <Header />
                 <LinkList links={this.state.links} deleteLink={this.deleteLink} handleError={this.handleError} showModal={this.showModal} description={this.state.description} />
                 <AddLinkButton addLink={this.addLink} />
-                {this.state.showModal && <Modal addDescription={this.addDescription} closeModal={this.closeModal} linkText={this.state.requestedLinkText} />}
+                {this.state.showModal && <Modal addDescription={this.addDescription} closeModal={this.closeModal} linkText={this.state.requestedLinkText} description={this.state.description} />}
+                {this.state.showInfoModal && <InfoModal closeModal={this.closeModal} linkText={this.state.requestedLinkText} description={this.state.requestedDescription} />}
             </div>
         )
     }
