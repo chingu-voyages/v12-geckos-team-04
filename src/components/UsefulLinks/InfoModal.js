@@ -13,7 +13,7 @@ const InfoModal = (props) => {
                 <div className={closeButtonClasses}>&#10006;</div>
                 <p>{props.description}</p>
                 <div>
-                    <button className={styles.button}>Edit description</button>
+                    <button className={styles.button} onClick={props.editDescription}>Edit description</button>
                 </div>
             </div>
         </div>

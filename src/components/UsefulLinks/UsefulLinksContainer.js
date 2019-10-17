@@ -27,12 +27,12 @@ class UsefulLinksContainer extends React.Component {
             }
         }
         localStorage.setItem('savedLinks', JSON.stringify(updatedLinks))
-        this.setState(() => ({links: updatedLinks, showModal: false}))
+        this.setState(() => ({links: updatedLinks, showModal: false, requestedDescription: '', requestedIndex: '', requestedLinkText: ''}))
     }
 
     closeModal = (e) => {
         if (e.target.classList.contains('modalWrapper') || e.target.classList.contains('closeButton')) {
-            this.setState(() => ({showModal: false, showInfoModal: false}))
+            this.setState(() => ({showModal: false, showInfoModal: false, requestedDescription: '', requestedIndex: '', requestedLinkText: ''}))
         }
     }
 
@@ -69,6 +69,11 @@ class UsefulLinksContainer extends React.Component {
         this.setState(() => ({links: updatedList}))
     }
 
+    editDescription = () => {
+        this.setState(() => ({showInfoModal: false, showModal: true}))
+        this.setState(() => ({requestedDescription: '', requestedIndex: '', requestedLinkText: ''}))
+    }
+
     handleError = (e) => {
         e.persist()
         console.log(e)
@@ -95,7 +100,7 @@ class UsefulLinksContainer extends React.Component {
                 <LinkList links={this.state.links} deleteLink={this.deleteLink} handleError={this.handleError} showModal={this.showModal} description={this.state.description} />
                 <AddLinkButton addLink={this.addLink} />
                 {this.state.showModal && <Modal addDescription={this.addDescription} closeModal={this.closeModal} linkText={this.state.requestedLinkText} description={this.state.description} />}
-                {this.state.showInfoModal && <InfoModal closeModal={this.closeModal} linkText={this.state.requestedLinkText} description={this.state.requestedDescription} />}
+                {this.state.showInfoModal && <InfoModal editDescription={this.editDescription} closeModal={this.closeModal} linkText={this.state.requestedLinkText} description={this.state.requestedDescription} />}
             </div>
         )
     }
