@@ -1,0 +1,26 @@
+.diary__entry {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 30px auto;
+  position: relative;
+  text-align: justify;
+  padding: 10px;
+  // border: 1px solid black;
+  box-shadow: 2px 2px #eee;
+
+  .delete-item {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px;
+    cursor: pointer;
+  }
+
+  .diary__entry--header {
+    font-size: 1.8em;
+  }
+  p {
+    line-height: 25px;
+  }
+}
